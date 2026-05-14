@@ -873,7 +873,7 @@ describe('POST /api/test/connection provider mode', () => {
       'azure-key',
     );
     expect(JSON.parse(String(upstreamInit?.body))).toMatchObject({
-      max_completion_tokens: 128,
+      max_completion_tokens: 100,
     });
   });
 
@@ -909,7 +909,7 @@ describe('POST /api/test/connection provider mode', () => {
     );
     const [, upstreamInit] = upstream!;
     expect(JSON.parse(String(upstreamInit?.body))).toMatchObject({
-      max_completion_tokens: 128,
+      max_completion_tokens: 100,
     });
   });
 
@@ -945,7 +945,7 @@ describe('POST /api/test/connection provider mode', () => {
     );
     expect(JSON.parse(String(upstreamInit?.body))).toMatchObject({
       model: 'deployment-1',
-      max_completion_tokens: 128,
+      max_completion_tokens: 100,
     });
   });
 
