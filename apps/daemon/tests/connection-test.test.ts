@@ -872,6 +872,9 @@ describe('POST /api/test/connection provider mode', () => {
     expect((upstreamInit?.headers as Record<string, string>)['api-key']).toBe(
       'azure-key',
     );
+    expect(JSON.parse(String(upstreamInit?.body))).toMatchObject({
+      max_completion_tokens: 100,
+    });
   });
 
   it('keeps the default Azure api-version in connection tests when the field is blank', async () => {
@@ -904,6 +907,10 @@ describe('POST /api/test/connection provider mode', () => {
     expect(String(upstreamUrl)).toBe(
       'https://my-azure.openai.azure.com/openai/deployments/deployment-1/chat/completions?api-version=2024-10-21',
     );
+    const [, upstreamInit] = upstream!;
+    expect(JSON.parse(String(upstreamInit?.body))).toMatchObject({
+      max_completion_tokens: 100,
+    });
   });
 
   it('omits Azure api-version in connection tests for OpenAI-compatible v1 paths when blank', async () => {
@@ -938,6 +945,7 @@ describe('POST /api/test/connection provider mode', () => {
     );
     expect(JSON.parse(String(upstreamInit?.body))).toMatchObject({
       model: 'deployment-1',
+      max_completion_tokens: 100,
     });
   });
 

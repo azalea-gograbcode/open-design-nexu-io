@@ -871,7 +871,7 @@ export function registerChatRoutes(app: Express, ctx: RegisterChatRoutesDeps) {
     const payload = {
       ...(usesVersionedOpenAIPath ? { model } : {}),
       messages: payloadMessages,
-      max_tokens:
+      max_completion_tokens:
         typeof maxTokens === 'number' && maxTokens > 0 ? maxTokens : 8192,
       stream: true,
     };
