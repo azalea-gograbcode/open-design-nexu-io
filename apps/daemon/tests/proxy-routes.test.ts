@@ -305,6 +305,9 @@ describe('API proxy routes', () => {
       'https://resource.openai.azure.com/openai/deployments/deployment-one/chat/completions?api-version=2024-10-21',
     );
     expect(upstreamInit?.headers).toMatchObject({ 'api-key': 'azure-key' });
+    expect(JSON.parse(String(upstreamInit?.body))).toMatchObject({
+      max_completion_tokens: 8192,
+    });
     expect(upstreamInit?.redirect).toBe('error');
   });
 
@@ -410,6 +413,7 @@ describe('API proxy routes', () => {
     );
     expect(JSON.parse(String(upstreamInit?.body))).toMatchObject({
       model: 'deployment-one',
+      max_completion_tokens: 8192,
     });
   });
 
